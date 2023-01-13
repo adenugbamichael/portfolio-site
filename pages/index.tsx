@@ -1,8 +1,10 @@
-import Head from "next/head"
 import Link from "next/link"
 import { BlogList } from "../components/blogs"
 import { PortfolioList } from "../components/portfolios"
 import { BaseLayout } from "../components/layout"
+import { getDir, getFileNames, getItemInPath } from "../lib/md"
+import { GetStaticProps } from "next"
+import { join } from "path"
 
 const Home = () => {
   return (
@@ -28,6 +30,20 @@ const Home = () => {
       <PortfolioList />
     </BaseLayout>
   )
+}
+
+export const getStaticProps: GetStaticProps = () => {
+  const blogDir = getDir("/content/blogs")
+  const blogFileNames = getFileNames(blogDir)
+
+  blogFileNames.forEach((blogFileName: string) => {
+    const blogContent = getItemInPath(join(blogDir, blogFileName))
+    console.log(blogContent)
+  })
+
+  return {
+    props: {},
+  }
 }
 
 export default Home
