@@ -2,7 +2,7 @@ import Link from "next/link"
 import { BlogList } from "../components/blogs"
 import { PortfolioList } from "../components/portfolios"
 import { BaseLayout } from "../components/layout"
-import { getBlogs } from "../lib/md"
+import { getBlogs } from "../lib/blogs"
 import { GetStaticProps } from "next"
 
 const Home = () => {
