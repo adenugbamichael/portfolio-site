@@ -1,10 +1,10 @@
 import { NextPage } from "next/types"
-import { BaseLayout } from "../../components/layout"
+import { PageLayout } from "@components/layout"
 
 const BlogDetail: NextPage = () => {
   return (
     <>
-      <BaseLayout>
+      <PageLayout>
         <div className='w-2/3 m-auto'>
           {/* Blog Header Starts */}
           <div className='blog-detail-header'>
@@ -55,7 +55,7 @@ const BlogDetail: NextPage = () => {
             Content Here
           </article>
         </div>
-      </BaseLayout>
+      </PageLayout>
     </>
   )
 }

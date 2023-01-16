@@ -1,5 +1,5 @@
 import { join } from "path"
-import { Blog } from "../interfaces/Blog"
+import { Blog } from "@interfaces/Blog"
 import { getDir, getAllItems, getFileNames, getItemInPath } from "./md"
 
 const BLOG_DIR = getDir("/content/blogs")
