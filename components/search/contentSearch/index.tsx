@@ -1,6 +1,27 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid"
+import searchIndex from "@content/search/index.json"
+import * as JsSearch from "js-search"
+import { useEffect } from "react"
 
 const ContentSearch = () => {
+  const buildIndex = () => {
+    const searchEngine = new JsSearch.Search("slug")
+
+    searchEngine.addIndex("title")
+    searchEngine.addIndex("description")
+
+    searchEngine.addDocuments(searchIndex)
+
+    const results1 = searchEngine.search("nft marketplace")
+    const results2 = searchEngine.search("Practical")
+    const results3 = searchEngine.search("mark")
+    const results4 = searchEngine.search("Siemens")
+    const results5 = searchEngine.search("notexisting value")
+  }
+
+  useEffect(() => {
+    buildIndex()
+  }, [])
   return (
     <>
       <label htmlFor='search' className='sr-only'>
@@ -21,31 +42,33 @@ const ContentSearch = () => {
           placeholder='Search for anything'
         />
       </div>
-      <ul
-        className='w-80 border-solid border rounded-md z-10 bg-white max-h-80 overflow-auto absolute select is-multiple'
-        role='listbox'
-      >
-        <li
-          onClick={() => {}}
-          className={`hover:bg-indigo-600 hover:text-white p-3 relative cursor-pointer`}
+      {false && (
+        <ul
+          className='w-80 border-solid border rounded-md z-10 bg-white max-h-80 overflow-auto absolute select is-multiple'
+          role='listbox'
         >
-          <div className='font-bold text-sm truncate'>Found Blog Title 1</div>
-          <p className='truncate text-sm'>Found Blog Desc 1</p>
-          <span className='mt-2 text-xs text-white bg-gray-800 px-2 py-1 rounded-xl'>
-            blogs
-          </span>
-        </li>
-        <li
-          onClick={() => {}}
-          className={`hover:bg-indigo-600 hover:text-white p-3 relative cursor-pointer`}
-        >
-          <div className='font-bold text-sm truncate'>Found Blog Title 2</div>
-          <p className='truncate text-sm'>Found Blog Desc 2</p>
-          <span className='mt-2 text-xs text-white bg-gray-800 px-2 py-1 rounded-xl'>
-            portfolios
-          </span>
-        </li>
-      </ul>
+          <li
+            onClick={() => {}}
+            className={`hover:bg-indigo-600 hover:text-white p-3 relative cursor-pointer`}
+          >
+            <div className='font-bold text-sm truncate'>Found Blog Title 1</div>
+            <p className='truncate text-sm'>Found Blog Desc 1</p>
+            <span className='mt-2 text-xs text-white bg-gray-800 px-2 py-1 rounded-xl'>
+              blogs
+            </span>
+          </li>
+          <li
+            onClick={() => {}}
+            className={`hover:bg-indigo-600 hover:text-white p-3 relative cursor-pointer`}
+          >
+            <div className='font-bold text-sm truncate'>Found Blog Title 2</div>
+            <p className='truncate text-sm'>Found Blog Desc 2</p>
+            <span className='mt-2 text-xs text-white bg-gray-800 px-2 py-1 rounded-xl'>
+              portfolios
+            </span>
+          </li>
+        </ul>
+      )}
     </>
   )
 }
